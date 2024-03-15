@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="munit_deployments-test-suite.xml" />
+	<munit:test name="munit_deployments-test-suite-munit_deploymentsFlowTest" doc:id="a1ef4cad-e91d-40f8-ba8a-f4aedd75543f" description="Test">
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="15612e73-3783-4ed9-b127-7c9c6a635bc2" >
+				<munit:payload value='#["This is munit mule message!"]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to munit_deploymentsFlow" doc:id="d796eee0-575b-4247-824f-3905d5089c40" name="munit_deploymentsFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="c4ff70ef-3a51-48f2-9b47-1d3b83f4e8e3" is='#[MunitTools::equalTo("This is munit mule message!")]' expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
